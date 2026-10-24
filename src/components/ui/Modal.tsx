@@ -40,7 +40,7 @@ export function Modal({ isOpen, onClose, title, description, children, maxWidth 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs transition-opacity"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs transition-opacity"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
@@ -50,18 +50,18 @@ export function Modal({ isOpen, onClose, title, description, children, maxWidth 
     >
       <div
         ref={modalRef}
-        className={`w-full ${maxWidthClasses} bg-white rounded-2xl border border-slate-200/80 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150`}
+        className={`w-full ${maxWidthClasses} bg-white rounded-2xl border border-[#E5E1D8] shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150`}
       >
-        <div className="flex items-start justify-between p-5 border-b border-slate-100">
+        <div className="flex items-start justify-between p-5 border-b border-[#EBE7DF]">
           <div>
-            <h3 id="modal-title" className="text-lg font-semibold text-slate-900">
+            <h3 id="modal-title" className="font-editorial text-xl font-bold text-[#1E2320]">
               {title}
             </h3>
-            {description && <p className="text-xs text-slate-500 mt-0.5">{description}</p>}
+            {description && <p className="text-xs text-[#5F635D] mt-0.5">{description}</p>}
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+            className="text-[#8C887E] hover:text-[#1E2320] p-1.5 rounded-lg hover:bg-[#F4F1EA] transition-colors"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
@@ -99,13 +99,13 @@ export function ConfirmDialog({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title} maxWidth="sm">
       <div className="space-y-4">
-        <p className="text-sm text-slate-600 leading-relaxed">{message}</p>
+        <p className="text-sm text-[#5F635D] leading-relaxed">{message}</p>
         <div className="flex items-center justify-end gap-3 pt-2">
           <button
             type="button"
             onClick={onClose}
             disabled={isLoading}
-            className="px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors whitespace-nowrap"
+            className="px-4 py-2 text-xs font-medium text-[#5F635D] hover:bg-[#F4F1EA] rounded-lg transition-colors whitespace-nowrap cursor-pointer"
           >
             {cancelLabel}
           </button>
@@ -113,10 +113,10 @@ export function ConfirmDialog({
             type="button"
             onClick={onConfirm}
             disabled={isLoading}
-            className={`px-4 py-2 text-xs font-medium text-white rounded-lg transition-colors whitespace-nowrap ${
+            className={`px-4 py-2 text-xs font-medium text-white rounded-lg transition-colors whitespace-nowrap cursor-pointer ${
               isDestructive
                 ? 'bg-rose-600 hover:bg-rose-700'
-                : 'bg-indigo-600 hover:bg-indigo-700'
+                : 'bg-[#1E3F35] hover:bg-[#163028]'
             } ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
             {isLoading ? 'Processing...' : confirmLabel}

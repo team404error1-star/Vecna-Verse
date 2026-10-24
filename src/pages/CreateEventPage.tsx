@@ -137,31 +137,31 @@ export function CreateEventPage() {
       {/* Back button */}
       <Link
         to="/organizer/dashboard"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5F635D] hover:text-[#1E2320] transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Organizer Console</span>
       </Link>
 
       {/* Header */}
-      <div className="pb-4 border-b border-slate-200/80">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+      <div className="pb-4 border-b border-[#E5E1D8]">
+        <h1 className="font-editorial text-3xl font-bold tracking-tight text-[#1E2320]">
           Create New Community Event
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-[#5F635D] mt-1">
           Publish a gathering, workshop, meetup, or performance for local residents.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-2xs">
+      <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-[#E5E1D8] shadow-xs">
         {/* Section: Basics */}
         <div className="space-y-4">
-          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider pb-2 border-b border-slate-100">
+          <h2 className="font-editorial text-base font-bold text-[#1E2320] pb-2 border-b border-[#EBE7DF]">
             1. Event Overview
           </h2>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
               Event Title *
             </label>
             <input
@@ -169,8 +169,8 @@ export function CreateEventPage() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Downtown Weekend Artisan & Coffee Walk"
-              className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 focus:bg-white focus:ring-1 focus:ring-indigo-500 ${
-                errors.title ? 'border-rose-500' : 'border-slate-200'
+              className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] focus:ring-1 focus:ring-[#1E3F35] ${
+                errors.title ? 'border-rose-500' : 'border-[#E2DFD8]'
               }`}
             />
             {errors.title && <p className="text-[11px] text-rose-600 mt-1">{errors.title}</p>}
@@ -178,13 +178,13 @@ export function CreateEventPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Category *
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as EventCategory)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 cursor-pointer"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] cursor-pointer focus:border-[#1E3F35]"
               >
                 {DEMO_CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -195,7 +195,7 @@ export function CreateEventPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Short Summary (1-2 sentences)
               </label>
               <input
@@ -203,13 +203,13 @@ export function CreateEventPage() {
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
                 placeholder="Brief takeaway shown on discovery cards"
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
               Detailed Description *
             </label>
             <textarea
@@ -217,8 +217,8 @@ export function CreateEventPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="What can attendees expect? Outline schedule, what to bring, and special guidelines."
-              className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 focus:bg-white focus:ring-1 focus:ring-indigo-500 ${
-                errors.description ? 'border-rose-500' : 'border-slate-200'
+              className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] focus:ring-1 focus:ring-[#1E3F35] ${
+                errors.description ? 'border-rose-500' : 'border-[#E2DFD8]'
               }`}
             />
             {errors.description && (
@@ -229,7 +229,7 @@ export function CreateEventPage() {
 
         {/* Section: Visual Asset Selection */}
         <div className="space-y-4">
-          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider pb-2 border-b border-slate-100">
+          <h2 className="font-editorial text-base font-bold text-[#1E2320] pb-2 border-b border-[#EBE7DF]">
             2. Cover Artwork
           </h2>
 
@@ -245,7 +245,7 @@ export function CreateEventPage() {
                     setCustomImageUrl('');
                   }}
                   className={`relative rounded-xl overflow-hidden aspect-[4/3] border-2 transition-all cursor-pointer ${
-                    selected ? 'border-indigo-600 shadow-md ring-2 ring-indigo-200' : 'border-transparent opacity-80 hover:opacity-100'
+                    selected ? 'border-[#1E3F35] shadow-md ring-2 ring-[#D0E2D9]' : 'border-transparent opacity-80 hover:opacity-100'
                   }`}
                 >
                   <img
@@ -255,11 +255,11 @@ export function CreateEventPage() {
                     className="w-full h-full object-cover"
                   />
                   {selected && (
-                    <div className="absolute top-1.5 right-1.5 p-1 bg-indigo-600 text-white rounded-full">
+                    <div className="absolute top-1.5 right-1.5 p-1 bg-[#1E3F35] text-white rounded-full">
                       <Check className="w-3 h-3" />
                     </div>
                   )}
-                  <div className="absolute bottom-0 inset-x-0 bg-slate-900/70 p-1 text-[10px] text-white text-center truncate">
+                  <div className="absolute bottom-0 inset-x-0 bg-[#1E2320]/80 p-1 text-[10px] text-white text-center truncate">
                     {preset.name}
                   </div>
                 </button>
@@ -268,7 +268,7 @@ export function CreateEventPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
               Or Custom Image URL
             </label>
             <input
@@ -276,28 +276,28 @@ export function CreateEventPage() {
               value={customImageUrl}
               onChange={(e) => setCustomImageUrl(e.target.value)}
               placeholder="https://example.com/photo.jpg"
-              className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+              className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
             />
           </div>
         </div>
 
         {/* Section: Date, Time & Venue */}
         <div className="space-y-4">
-          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider pb-2 border-b border-slate-100">
+          <h2 className="font-editorial text-base font-bold text-[#1E2320] pb-2 border-b border-[#EBE7DF]">
             3. Schedule & Location
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Start Date & Time *
               </label>
               <input
                 type="datetime-local"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 ${
-                  errors.startDate ? 'border-rose-500' : 'border-slate-200'
+                className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] ${
+                  errors.startDate ? 'border-rose-500' : 'border-[#E2DFD8]'
                 }`}
               />
               {errors.startDate && (
@@ -306,15 +306,15 @@ export function CreateEventPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 End Date & Time *
               </label>
               <input
                 type="datetime-local"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 ${
-                  errors.endDate ? 'border-rose-500' : 'border-slate-200'
+                className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] ${
+                  errors.endDate ? 'border-rose-500' : 'border-[#E2DFD8]'
                 }`}
               />
               {errors.endDate && (
@@ -325,7 +325,7 @@ export function CreateEventPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Venue Name *
               </label>
               <input
@@ -333,8 +333,8 @@ export function CreateEventPage() {
                 value={venueName}
                 onChange={(e) => setVenueName(e.target.value)}
                 placeholder="e.g. Waterfront Community Hall"
-                className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 ${
-                  errors.venueName ? 'border-rose-500' : 'border-slate-200'
+                className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] ${
+                  errors.venueName ? 'border-rose-500' : 'border-[#E2DFD8]'
                 }`}
               />
               {errors.venueName && (
@@ -343,13 +343,13 @@ export function CreateEventPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Neighborhood *
               </label>
               <select
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 cursor-pointer"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] cursor-pointer focus:border-[#1E3F35]"
               >
                 {DEMO_NEIGHBORHOODS.filter((n) => n !== 'All Neighborhoods').map((n) => (
                   <option key={n} value={n}>
@@ -361,7 +361,7 @@ export function CreateEventPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
               Street Address *
             </label>
             <input
@@ -369,8 +369,8 @@ export function CreateEventPage() {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder="e.g. 240 Pier Street"
-              className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 ${
-                errors.address ? 'border-rose-500' : 'border-slate-200'
+              className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] ${
+                errors.address ? 'border-rose-500' : 'border-[#E2DFD8]'
               }`}
             />
             {errors.address && (
@@ -381,13 +381,13 @@ export function CreateEventPage() {
 
         {/* Section: Capacity & Pricing */}
         <div className="space-y-4">
-          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider pb-2 border-b border-slate-100">
+          <h2 className="font-editorial text-base font-bold text-[#1E2320] pb-2 border-b border-[#EBE7DF]">
             4. Capacity & Pricing
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Attendee Capacity *
               </label>
               <input
@@ -395,8 +395,8 @@ export function CreateEventPage() {
                 min="1"
                 value={capacity}
                 onChange={(e) => setCapacity(e.target.value)}
-                className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 ${
-                  errors.capacity ? 'border-rose-500' : 'border-slate-200'
+                className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] ${
+                  errors.capacity ? 'border-rose-500' : 'border-[#E2DFD8]'
                 }`}
               />
               {errors.capacity && (
@@ -405,7 +405,7 @@ export function CreateEventPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Ticket Price (USD) *
               </label>
               <input
@@ -415,15 +415,15 @@ export function CreateEventPage() {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="0 for free"
-                className={`w-full text-xs bg-slate-50 border rounded-xl p-3 text-slate-900 ${
-                  errors.price ? 'border-rose-500' : 'border-slate-200'
+                className={`w-full text-xs bg-white border rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35] ${
+                  errors.price ? 'border-rose-500' : 'border-[#E2DFD8]'
                 }`}
               />
-              <span className="text-[11px] text-slate-400">Set 0 for free community RSVP</span>
+              <span className="text-[11px] text-[#8C887E]">Set 0 for free community RSVP</span>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Tags (comma-separated)
               </label>
               <input
@@ -431,24 +431,24 @@ export function CreateEventPage() {
                 value={tagsInput}
                 onChange={(e) => setTagsInput(e.target.value)}
                 placeholder="Outdoor, Music, Workshop"
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
           </div>
         </div>
 
         {/* Submit Bar */}
-        <div className="pt-6 border-t border-slate-100 flex items-center justify-end gap-3">
+        <div className="pt-6 border-t border-[#EBE7DF] flex items-center justify-end gap-3">
           <Link
             to="/organizer/dashboard"
-            className="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900"
+            className="px-4 py-2.5 text-xs font-medium text-[#5F635D] hover:text-[#1E2320]"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={submitting}
-            className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors shadow-xs"
+            className="px-6 py-2.5 bg-[#1E3F35] hover:bg-[#163028] text-white text-xs font-semibold rounded-lg transition-colors shadow-xs"
           >
             {submitting ? 'Publishing Event...' : 'Publish Event'}
           </button>

@@ -48,15 +48,15 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FBFBFA]/95 backdrop-blur-md border-b border-slate-200/80">
+    <header className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E7E3DB]">
       {/* Engine Status Bar */}
-      <div className="bg-slate-900 text-slate-300 text-[11px] py-1 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span className="text-emerald-400 font-semibold">● Live Engine:</span>
+      <div className="bg-[#1E3F35] text-[#D2E2DB] text-[11px] py-1.5 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span className="text-[#96D2BA] font-semibold">● Live Engine:</span>
         <span>Real Event Persistence & Geolocation Active.</span>
-        <span className="text-slate-500">·</span>
+        <span className="text-[#6C9685]">·</span>
         <button
           onClick={() => handleQuickSwitch(currentUser?.role === 'organizer' ? 'attendee' : 'organizer')}
-          className="text-indigo-300 hover:text-white underline underline-offset-2 transition-colors cursor-pointer"
+          className="text-white hover:underline underline-offset-2 transition-colors cursor-pointer"
         >
           View as {currentUser?.role === 'organizer' ? 'Attendee (Sarah)' : 'Organizer (Marcus)'}
         </button>
@@ -64,24 +64,24 @@ export function Navbar() {
 
       {/* Top Bar Contract: 3 zones, gap-8 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
-        {/* Zone 1: Single text element wordmark */}
+        {/* Zone 1: Single text element wordmark in Editorial Serif */}
         <div className="flex items-center gap-3 shrink-0">
           <Link
             to="/"
-            className="text-xl font-bold tracking-tight text-slate-900 whitespace-nowrap shrink-0 hover:text-indigo-600 transition-colors"
+            className="font-editorial text-2xl font-bold tracking-tight text-[#1E2320] whitespace-nowrap shrink-0 hover:text-[#1E3F35] transition-colors"
           >
             Locora
           </Link>
         </div>
 
         {/* Zone 2: 4-5 single-line clean navigation links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#5F635D]">
           <Link
             to="/discover"
             className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
               isCurrent('/discover')
-                ? 'text-slate-900 border-b-2 border-indigo-600 font-semibold'
-                : 'hover:text-slate-900'
+                ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                : 'hover:text-[#1E2320]'
             }`}
           >
             Discover
@@ -91,8 +91,8 @@ export function Navbar() {
             to="/smart-match"
             className={`inline-flex items-center gap-1 transition-colors whitespace-nowrap shrink-0 pb-1 ${
               isCurrent('/smart-match')
-                ? 'text-slate-900 border-b-2 border-indigo-600 font-semibold'
-                : 'hover:text-slate-900'
+                ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                : 'hover:text-[#1E2320]'
             }`}
           >
             <span>SmartMatch</span>
@@ -103,8 +103,8 @@ export function Navbar() {
               to="/dashboard"
               className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
                 isCurrent('/dashboard') || isCurrent('/my-registrations') || isCurrent('/saved')
-                  ? 'text-slate-900 border-b-2 border-indigo-600 font-semibold'
-                  : 'hover:text-slate-900'
+                  ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                  : 'hover:text-[#1E2320]'
               }`}
             >
               My Hub
@@ -115,8 +115,8 @@ export function Navbar() {
             to="/organizer/dashboard"
             className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
               isCurrent('/organizer')
-                ? 'text-slate-900 border-b-2 border-indigo-600 font-semibold'
-                : 'hover:text-slate-900'
+                ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                : 'hover:text-[#1E2320]'
             }`}
           >
             Organizer Hub
@@ -228,7 +228,7 @@ export function Navbar() {
           ) : (
             <Link
               to="/login"
-              className="px-4 py-2 text-xs font-medium text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0"
+              className="px-4 py-2 text-xs font-medium text-white bg-[#1E3F35] rounded-lg hover:bg-[#163028] transition-colors whitespace-nowrap shrink-0"
             >
               Sign In
             </Link>
@@ -237,7 +237,7 @@ export function Navbar() {
           {/* Quick Create Event Primary Button */}
           <Link
             to="/organizer/events/new"
-            className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-2xs"
+            className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-2xs"
           >
             <PlusCircle className="w-3.5 h-3.5" />
             <span>Post Event</span>
@@ -248,14 +248,14 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-2">
           <Link
             to="/organizer/events/new"
-            className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg"
+            className="p-2 text-[#1E3F35] hover:bg-[#EAF1ED] rounded-lg"
             aria-label="Post event"
           >
             <PlusCircle className="w-5 h-5" />
           </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-600 hover:text-slate-900 rounded-lg"
+            className="p-2 text-[#1E2320] hover:text-[#1E3F35] rounded-lg"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -346,7 +346,7 @@ export function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="w-full text-center py-2.5 text-xs font-medium text-white bg-slate-900 rounded-lg"
+                className="w-full text-center py-2.5 text-xs font-medium text-white bg-[#1E3F35] rounded-lg"
               >
                 Sign In
               </Link>
@@ -354,7 +354,7 @@ export function Navbar() {
 
             <Link
               to="/organizer/events/new"
-              className="w-full text-center py-2.5 text-xs font-medium text-white bg-indigo-600 rounded-lg"
+              className="w-full text-center py-2.5 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg"
             >
               Create New Event
             </Link>

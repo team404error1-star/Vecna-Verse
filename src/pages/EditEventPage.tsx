@@ -144,45 +144,45 @@ export function EditEventPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Link
         to="/organizer/events"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5F635D] hover:text-[#1E2320] transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Events</span>
       </Link>
 
-      <div className="pb-4 border-b border-slate-200/80">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+      <div className="pb-4 border-b border-[#E5E1D8]">
+        <h1 className="font-editorial text-3xl font-bold tracking-tight text-[#1E2320]">
           Edit Event Details
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-[#5F635D] mt-1">
           Update event schedules, capacity limits, or venue location.
         </p>
       </div>
 
-      <form onSubmit={handleUpdate} className="space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-2xs">
+      <form onSubmit={handleUpdate} className="space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-[#E5E1D8] shadow-xs">
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
               Event Title *
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+              className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
             />
             {errors.title && <p className="text-[11px] text-rose-600 mt-1">{errors.title}</p>}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Category *
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as EventCategory)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               >
                 {DEMO_CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -193,13 +193,13 @@ export function EditEventPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Neighborhood *
               </label>
               <select
                 value={neighborhood}
                 onChange={(e) => setNeighborhood(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               >
                 {DEMO_NEIGHBORHOODS.filter((n) => n !== 'All Neighborhoods').map((n) => (
                   <option key={n} value={n}>
@@ -211,119 +211,119 @@ export function EditEventPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
               Description *
             </label>
             <textarea
               rows={4}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+              className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Start Date & Time *
               </label>
               <input
                 type="datetime-local"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 End Date & Time *
               </label>
               <input
                 type="datetime-local"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Venue Name *
               </label>
               <input
                 type="text"
                 value={venueName}
                 onChange={(e) => setVenueName(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Street Address *
               </label>
               <input
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Capacity *
               </label>
               <input
                 type="number"
                 value={capacity}
                 onChange={(e) => setCapacity(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Price (USD)
               </label>
               <input
                 type="number"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">
                 Tags
               </label>
               <input
                 type="text"
                 value={tagsInput}
                 onChange={(e) => setTagsInput(e.target.value)}
-                className="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900"
+                className="w-full text-xs bg-white border border-[#E2DFD8] rounded-lg p-3 text-[#1E2320] focus:border-[#1E3F35]"
               />
             </div>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-100 flex items-center justify-end gap-3">
+        <div className="pt-6 border-t border-[#EBE7DF] flex items-center justify-end gap-3">
           <Link
             to="/organizer/events"
-            className="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900"
+            className="px-4 py-2.5 text-xs font-medium text-[#5F635D] hover:text-[#1E2320]"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={submitting}
-            className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors shadow-xs"
+            className="px-6 py-2.5 bg-[#1E3F35] hover:bg-[#163028] text-white text-xs font-semibold rounded-lg transition-colors shadow-xs"
           >
             {submitting ? 'Saving Changes...' : 'Save Changes'}
           </button>

@@ -1,27 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --color-brand-primary: #4f46e5;
-  --color-brand-secondary: #0d9488;
-  --color-canvas: #fbfbfa;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Fraunces', Georgia, Cambria, serif;
+  --color-brand-primary: #1e3f35;
+  --color-brand-primary-hover: #163028;
+  --color-brand-secondary: #285447;
+  --color-brand-soft: #eaf1ed;
+  --color-canvas: #faf8f5;
+  --color-surface: #ffffff;
+  --color-hairline: #e7e3db;
 }
 
 :root {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color-scheme: light;
 }
 
 body {
   margin: 0;
-  background-color: #fbfbfa;
-  color: #0f172a;
+  background-color: #faf8f5;
+  color: #1e2320;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessible focus ring */
+.font-editorial {
+  font-family: 'Fraunces', Georgia, Cambria, serif;
+}
+
+/* Accessible focus ring matching the forest green brand theme */
 *:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid #1e3f35;
   outline-offset: 2px;
 }

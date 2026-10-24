@@ -37,7 +37,7 @@ export default function App() {
     <BrowserRouter>
       <ToastProvider>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-[#FBFBFA] text-slate-900 font-sans">
+        <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1E2320] font-sans">
           <Navbar />
           <main className="flex-1">
             <Routes>

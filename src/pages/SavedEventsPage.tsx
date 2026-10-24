@@ -27,19 +27,19 @@ export function SavedEventsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E1D8]">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+          <h1 className="font-editorial text-3xl font-bold tracking-tight text-[#1E2320]">
             Saved Events
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-[#5F635D] mt-1">
             Keep track of neighborhood gatherings you're interested in attending.
           </p>
         </div>
 
         <Link
           to="/discover"
-          className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors self-start sm:self-auto"
+          className="text-xs font-semibold text-[#1E3F35] hover:underline transition-colors self-start sm:self-auto"
         >
           Explore more events →
         </Link>

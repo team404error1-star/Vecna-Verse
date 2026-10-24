@@ -47,20 +47,20 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         {toasts.map((t) => (
           <div
             key={t.id}
-            className="pointer-events-auto flex items-start gap-3 p-4 bg-white rounded-xl border border-slate-200 shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-200"
+            className="pointer-events-auto flex items-start gap-3 p-4 bg-white rounded-xl border border-[#E5E1D8] shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-200"
           >
             <div className="shrink-0 mt-0.5">
-              {t.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-600" />}
+              {t.type === 'success' && <CheckCircle2 className="w-5 h-5 text-[#1E3F35]" />}
               {t.type === 'error' && <AlertCircle className="w-5 h-5 text-rose-600" />}
-              {t.type === 'info' && <Info className="w-5 h-5 text-indigo-600" />}
+              {t.type === 'info' && <Info className="w-5 h-5 text-[#1E3F35]" />}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-slate-900 leading-tight">{t.title}</p>
-              {t.description && <p className="text-xs text-slate-600 mt-1 leading-normal">{t.description}</p>}
+              <p className="text-sm font-semibold text-[#1E2320] leading-tight">{t.title}</p>
+              {t.description && <p className="text-xs text-[#5F635D] mt-1 leading-normal">{t.description}</p>}
             </div>
             <button
               onClick={() => removeToast(t.id)}
-              className="text-slate-400 hover:text-slate-700 p-1 rounded-md transition-colors shrink-0"
+              className="text-[#8C887E] hover:text-[#1E2320] p-1 rounded-md transition-colors shrink-0"
               aria-label="Dismiss notification"
             >
               <X className="w-4 h-4" />

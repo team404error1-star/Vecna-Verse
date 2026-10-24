@@ -43,12 +43,12 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
             value={filters.query || ''}
             onChange={(e) => onChange({ ...filters, query: e.target.value })}
             placeholder="Search events by keyword, venue, or tag..."
-            className="w-full pl-10 pr-10 py-2.5 text-sm bg-white rounded-xl border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors shadow-2xs"
+            className="w-full pl-10 pr-10 py-2.5 text-sm bg-white rounded-xl border border-[#E2DFD8] text-[#1E2320] placeholder:text-[#8C887E] focus:border-[#1E3F35] focus:ring-1 focus:ring-[#1E3F35] transition-colors shadow-2xs"
           />
           {filters.query && (
             <button
               onClick={() => onChange({ ...filters, query: '' })}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8C887E] hover:text-[#1E2320] p-1"
               aria-label="Clear search"
             >
               <X className="w-4 h-4" />
@@ -61,19 +61,19 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
           <button
             type="button"
             onClick={() => setMobileDrawerOpen(true)}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-700 shadow-2xs"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-[#E2DFD8] rounded-xl text-xs font-medium text-[#1E2320] shadow-2xs"
           >
             <SlidersHorizontal className="w-4 h-4" />
             <span>Filter & Sort</span>
             {hasActiveFilters && (
-              <span className="w-2 h-2 rounded-full bg-indigo-600 ml-1" />
+              <span className="w-2 h-2 rounded-full bg-[#1E3F35] ml-1" />
             )}
           </button>
           {hasActiveFilters && (
             <button
               type="button"
               onClick={handleClearAll}
-              className="p-2.5 text-slate-500 hover:text-slate-800 bg-white border border-slate-200 rounded-xl"
+              className="p-2.5 text-[#5F635D] hover:text-[#1E2320] bg-white border border-[#E2DFD8] rounded-xl"
               aria-label="Reset filters"
             >
               <RotateCcw className="w-4 h-4" />
@@ -86,7 +86,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
           <select
             value={filters.neighborhood || 'All'}
             onChange={(e) => onChange({ ...filters, neighborhood: e.target.value })}
-            className="text-xs font-medium bg-white text-slate-700 border border-slate-200 rounded-xl px-3 py-2.5 shadow-2xs focus:border-indigo-500 cursor-pointer"
+            className="text-xs font-medium bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl px-3 py-2.5 shadow-2xs focus:border-[#1E3F35] cursor-pointer"
           >
             {DEMO_NEIGHBORHOODS.map((n) => (
               <option key={n} value={n}>
@@ -103,7 +103,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
                 dateRange: e.target.value as EventFilterOptions['dateRange'],
               })
             }
-            className="text-xs font-medium bg-white text-slate-700 border border-slate-200 rounded-xl px-3 py-2.5 shadow-2xs focus:border-indigo-500 cursor-pointer"
+            className="text-xs font-medium bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl px-3 py-2.5 shadow-2xs focus:border-[#1E3F35] cursor-pointer"
           >
             <option value="all">Any Date</option>
             <option value="today">Today</option>
@@ -119,7 +119,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
                 priceType: e.target.value as EventFilterOptions['priceType'],
               })
             }
-            className="text-xs font-medium bg-white text-slate-700 border border-slate-200 rounded-xl px-3 py-2.5 shadow-2xs focus:border-indigo-500 cursor-pointer"
+            className="text-xs font-medium bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl px-3 py-2.5 shadow-2xs focus:border-[#1E3F35] cursor-pointer"
           >
             <option value="all">All Prices</option>
             <option value="free">Free Admission</option>
@@ -134,7 +134,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
                 sortBy: e.target.value as EventFilterOptions['sortBy'],
               })
             }
-            className="text-xs font-medium bg-white text-slate-700 border border-slate-200 rounded-xl px-3 py-2.5 shadow-2xs focus:border-indigo-500 cursor-pointer"
+            className="text-xs font-medium bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl px-3 py-2.5 shadow-2xs focus:border-[#1E3F35] cursor-pointer"
           >
             <option value="relevance">Featured & Popular</option>
             <option value="soonest">Soonest First</option>
@@ -148,10 +148,10 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
         <button
           type="button"
           onClick={() => onChange({ ...filters, category: 'All' })}
-          className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+          className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
             activeCategory === 'All'
-              ? 'bg-slate-900 text-white shadow-2xs'
-              : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50'
+              ? 'bg-[#1E3F35] text-white shadow-2xs font-semibold'
+              : 'bg-white text-[#5F635D] hover:text-[#1E2320] border border-[#E2DFD8] hover:bg-[#F4F1EA]'
           }`}
         >
           All Categories
@@ -161,10 +161,10 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
             key={cat}
             type="button"
             onClick={() => onChange({ ...filters, category: cat })}
-            className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+            className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
               activeCategory === cat
-                ? 'bg-slate-900 text-white shadow-2xs'
-                : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200/80 hover:bg-slate-50'
+                ? 'bg-[#1E3F35] text-white shadow-2xs font-semibold'
+                : 'bg-white text-[#5F635D] hover:text-[#1E2320] border border-[#E2DFD8] hover:bg-[#F4F1EA]'
             }`}
           >
             {cat}
@@ -173,7 +173,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
       </div>
 
       {/* Filter Metadata & Clear All */}
-      <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
+      <div className="flex items-center justify-between text-xs text-[#5F635D] pt-1">
         <span className="tabular-nums font-medium">
           Showing {totalResults} {totalResults === 1 ? 'event' : 'events'}
         </span>
@@ -182,7 +182,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
           <button
             type="button"
             onClick={handleClearAll}
-            className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-800 transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1 text-xs font-medium text-[#1E3F35] hover:text-[#163028] transition-colors whitespace-nowrap"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset all filters</span>
@@ -193,17 +193,17 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
       {/* Mobile Drawer */}
       {mobileDrawerOpen && (
         <div
-          className="fixed inset-0 z-50 flex flex-col justify-end bg-slate-900/40 backdrop-blur-xs sm:hidden"
+          className="fixed inset-0 z-50 flex flex-col justify-end bg-black/40 backdrop-blur-xs sm:hidden"
           onClick={(e) => {
             if (e.target === e.currentTarget) setMobileDrawerOpen(false);
           }}
         >
-          <div className="bg-white rounded-t-2xl p-6 space-y-4 max-h-[85vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="text-base font-semibold text-slate-900">Filters & Sorting</h3>
+          <div className="bg-[#FAF8F5] rounded-t-2xl p-6 space-y-4 max-h-[85vh] overflow-y-auto border-t border-[#E2DFD8]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E2DFD8]">
+              <h3 className="font-editorial text-lg font-bold text-[#1E2320]">Filters & Sorting</h3>
               <button
                 onClick={() => setMobileDrawerOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-700"
+                className="p-1.5 text-[#8C887E] hover:text-[#1E2320]"
                 aria-label="Close filters"
               >
                 <X className="w-5 h-5" />
@@ -211,11 +211,11 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1.5">Neighborhood</label>
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">Neighborhood</label>
               <select
                 value={filters.neighborhood || 'All'}
                 onChange={(e) => onChange({ ...filters, neighborhood: e.target.value })}
-                className="w-full text-sm bg-white text-slate-800 border border-slate-200 rounded-xl p-3"
+                className="w-full text-sm bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl p-3"
               >
                 {DEMO_NEIGHBORHOODS.map((n) => (
                   <option key={n} value={n}>
@@ -226,7 +226,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1.5">Date Range</label>
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">Date Range</label>
               <select
                 value={filters.dateRange || 'all'}
                 onChange={(e) =>
@@ -235,7 +235,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
                     dateRange: e.target.value as EventFilterOptions['dateRange'],
                   })
                 }
-                className="w-full text-sm bg-white text-slate-800 border border-slate-200 rounded-xl p-3"
+                className="w-full text-sm bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl p-3"
               >
                 <option value="all">Any Date</option>
                 <option value="today">Today</option>
@@ -245,7 +245,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1.5">Price</label>
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">Price</label>
               <select
                 value={filters.priceType || 'all'}
                 onChange={(e) =>
@@ -254,7 +254,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
                     priceType: e.target.value as EventFilterOptions['priceType'],
                   })
                 }
-                className="w-full text-sm bg-white text-slate-800 border border-slate-200 rounded-xl p-3"
+                className="w-full text-sm bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl p-3"
               >
                 <option value="all">All Prices</option>
                 <option value="free">Free Admission</option>
@@ -263,7 +263,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1.5">Sort Results By</label>
+              <label className="block text-xs font-semibold text-[#1E2320] mb-1.5">Sort Results By</label>
               <select
                 value={filters.sortBy || 'relevance'}
                 onChange={(e) =>
@@ -272,7 +272,7 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
                     sortBy: e.target.value as EventFilterOptions['sortBy'],
                   })
                 }
-                className="w-full text-sm bg-white text-slate-800 border border-slate-200 rounded-xl p-3"
+                className="w-full text-sm bg-white text-[#1E2320] border border-[#E2DFD8] rounded-xl p-3"
               >
                 <option value="relevance">Featured & Popular</option>
                 <option value="soonest">Soonest First</option>
@@ -284,14 +284,14 @@ export function EventFilters({ filters, onChange, totalResults }: EventFiltersPr
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="flex-1 py-3 text-xs font-medium text-slate-700 border border-slate-200 rounded-xl"
+                className="flex-1 py-3 text-xs font-medium text-[#1E2320] bg-white border border-[#E2DFD8] rounded-xl"
               >
                 Reset
               </button>
               <button
                 type="button"
                 onClick={() => setMobileDrawerOpen(false)}
-                className="flex-1 py-3 text-xs font-medium text-white bg-indigo-600 rounded-xl"
+                className="flex-1 py-3 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-xl shadow-xs"
               >
                 Show {totalResults} Results
               </button>

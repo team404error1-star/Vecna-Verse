@@ -77,43 +77,44 @@ export function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column: Proposition & Search */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="space-y-3">
-                <span className="text-xs font-semibold text-indigo-600 tracking-wider uppercase">
+              <div className="space-y-4">
+                <span className="text-xs font-semibold text-[#1E3F35] tracking-wider uppercase">
                   Hyperlocal Community Platform
                 </span>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] text-balance">
+                <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#1E2320] leading-[1.08] text-balance">
                   Discover nearby. <br />
-                  <span className="text-indigo-600">Connect locally.</span>
+                  Pick a gathering. <br />
+                  <span className="text-[#1E3F35]">Connect locally.</span>
                 </h1>
-                <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
+                <p className="text-base sm:text-lg text-[#5F635D] max-w-xl leading-relaxed">
                   Locora brings neighborhood gatherings, civic hackathons, courtyard concerts, and artisan markets into one unified discovery experience.
                 </p>
               </div>
 
-              {/* Instant Search Form */}
+              {/* Instant Search Form styled like user screenshot */}
               <form
                 onSubmit={handleHeroSearch}
-                className="bg-white p-2.5 rounded-2xl border border-slate-200/90 shadow-md space-y-2 sm:space-y-0 sm:flex sm:items-center sm:gap-2 max-w-xl"
+                className="bg-white p-2 rounded-xl border border-[#E2DFD8] shadow-sm space-y-2 sm:space-y-0 sm:flex sm:items-center sm:gap-2 max-w-xl"
               >
                 {/* Search Text */}
                 <div className="relative flex-1">
-                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8C887E]" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search music, tech, farmers market..."
-                    className="w-full pl-10 pr-3 py-2.5 text-xs sm:text-sm bg-transparent border-0 text-slate-900 placeholder:text-slate-400 focus:outline-hidden"
+                    className="w-full pl-10 pr-3 py-2.5 text-xs sm:text-sm bg-transparent border-0 text-[#1E2320] placeholder:text-[#8C887E] focus:outline-hidden"
                   />
                 </div>
 
                 {/* Neighborhood Dropdown & Detect Location Button */}
-                <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-50 rounded-xl border border-slate-200/60 shrink-0">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-[#FAF8F5] rounded-lg border border-[#E2DFD8] shrink-0">
+                  <MapPin className="w-3.5 h-3.5 text-[#5F635D] shrink-0" />
                   <select
                     value={selectedNeighborhood}
                     onChange={(e) => setSelectedNeighborhood(e.target.value)}
-                    className="text-xs font-medium text-slate-700 bg-transparent border-0 cursor-pointer focus:outline-hidden max-w-[140px] truncate"
+                    className="text-xs font-medium text-[#1E2320] bg-transparent border-0 cursor-pointer focus:outline-hidden max-w-[140px] truncate"
                   >
                     {DEMO_NEIGHBORHOODS.map((n) => (
                       <option key={n} value={n}>
@@ -130,29 +131,29 @@ export function HomePage() {
                     disabled={locating}
                     title="Detect my real current location"
                     aria-label="Detect my real current location"
-                    className="p-1 text-slate-400 hover:text-indigo-600 transition-colors shrink-0"
+                    className="p-1 text-[#8C887E] hover:text-[#1E3F35] transition-colors shrink-0"
                   >
-                    {locating ? <Loader2 className="w-3.5 h-3.5 animate-spin text-indigo-600" /> : <Navigation className="w-3.5 h-3.5" />}
+                    {locating ? <Loader2 className="w-3.5 h-3.5 animate-spin text-[#1E3F35]" /> : <Navigation className="w-3.5 h-3.5" />}
                   </button>
                 </div>
 
                 {/* Search CTA */}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors whitespace-nowrap shadow-xs cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-2.5 bg-[#1E3F35] hover:bg-[#163028] text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap shadow-xs cursor-pointer"
                 >
                   Find Events
                 </button>
               </form>
 
               {/* Quick Category Chips */}
-              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-600">
-                <span className="text-slate-400 text-xs">Trending:</span>
+              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-[#5F635D]">
+                <span className="text-[#8C887E] text-xs">Trending:</span>
                 {['Food & Community', 'Live Music & Culture', 'Technology & Hackathons'].map((cat) => (
                   <Link
                     key={cat}
                     to={`/discover?category=${encodeURIComponent(cat)}`}
-                    className="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+                    className="px-2.5 py-1 rounded-md bg-[#ECE8E0] hover:bg-[#E2DDD3] text-[#2C312E] transition-colors"
                   >
                     {cat}
                   </Link>
@@ -189,16 +190,16 @@ export function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#1E2320]">
               Featured Gatherings
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-[#5F635D] mt-1">
               Curated neighborhood highlights with high community attendance.
             </p>
           </div>
           <Link
             to="/discover"
-            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors"
+            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-[#1E3F35] hover:underline transition-colors"
           >
             <span>Explore all events</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -218,22 +219,22 @@ export function HomePage() {
 
       {/* SmartMatch Feature Showcase Callout */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-indigo-900 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+        <div className="bg-[#1E3F35] rounded-3xl p-8 sm:p-12 text-white shadow-md relative overflow-hidden">
           <div className="relative z-10 max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-medium text-indigo-200">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-medium text-[#D0E2D9]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>SmartMatch Personalized Discovery</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-balance">
+            <h2 className="font-editorial text-3xl sm:text-4xl font-bold tracking-tight text-balance">
               Find activities tailored to your exact neighborhood and interests.
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#D0E2D9] leading-relaxed">
               Never miss a workshop or meetup. Set your preferred neighborhoods and topic interests, and receive transparent recommendations explaining exactly why each event was selected.
             </p>
             <div className="pt-2">
               <Link
                 to="/smart-match"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-xs font-semibold transition-colors shadow-xs"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#1E3F35] hover:bg-[#F2EFE9] text-xs font-semibold transition-colors shadow-xs"
               >
                 <span>Try SmartMatch Discovery</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -246,10 +247,10 @@ export function HomePage() {
       {/* Browse by Category Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#1E2320]">
             Browse by Interest
           </h2>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-[#5F635D] mt-1">
             Explore activities organized by creative, technical, and social categories.
           </p>
         </div>
@@ -259,12 +260,12 @@ export function HomePage() {
             <Link
               key={category}
               to={`/discover?category=${encodeURIComponent(category)}`}
-              className="p-5 bg-white rounded-xl border border-slate-200/80 hover:border-indigo-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+              className="p-5 bg-white rounded-xl border border-[#E5E1D8] hover:border-[#1E3F35] hover:shadow-sm transition-all group flex flex-col justify-between"
             >
-              <span className="text-sm font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+              <span className="text-sm font-semibold text-[#1E2320] group-hover:text-[#1E3F35] transition-colors">
                 {category}
               </span>
-              <span className="text-xs text-slate-400 mt-4 flex items-center gap-1">
+              <span className="text-xs text-[#8C887E] mt-4 flex items-center gap-1">
                 <span>View listings</span>
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
               </span>
@@ -277,16 +278,16 @@ export function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#1E2320]">
               Upcoming in Your City
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-[#5F635D] mt-1">
               Events scheduled over the coming weeks across all districts.
             </p>
           </div>
           <Link
             to="/discover"
-            className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors"
+            className="text-xs font-semibold text-[#1E3F35] hover:underline transition-colors"
           >
             See all ({upcomingEvents.length}+)
           </Link>
@@ -305,25 +306,25 @@ export function HomePage() {
 
       {/* Organizer Call to Action */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="bg-[#1E3F35] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-3 max-w-xl">
-            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">
+            <h3 className="font-editorial text-2xl sm:text-3xl font-bold tracking-tight">
               Organizing an event or workshop?
             </h3>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-[#D0E2D9] leading-relaxed">
               Locora gives local community leaders, non-profits, and indie organizers tools to publish listings, manage attendee RSVPs, and cultivate real neighborhood engagement.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
             <Link
               to="/organizer/events/new"
-              className="text-center px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-colors"
+              className="text-center px-5 py-2.5 rounded-lg bg-white text-[#1E3F35] hover:bg-[#F2EFE9] text-xs font-semibold transition-colors shadow-xs"
             >
               Post an Event Free
             </Link>
             <Link
               to="/organizer/dashboard"
-              className="text-center px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors border border-white/20"
+              className="text-center px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors border border-white/20"
             >
               Organizer Console
             </Link>
