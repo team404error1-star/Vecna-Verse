@@ -31,14 +31,14 @@ export function OrganizerProfilePage() {
   }, [organizerId]);
 
   if (loading) {
-    return <div className="max-w-5xl mx-auto px-4 py-16 text-center text-xs text-slate-500">Loading organizer profile...</div>;
+    return <div className="max-w-5xl mx-auto px-4 py-16 text-center text-xs text-[#5F635D]">Loading organizer profile...</div>;
   }
 
   if (!organizer) {
     return (
       <div className="max-w-md mx-auto px-4 py-20 text-center space-y-4">
-        <h2 className="text-xl font-bold text-slate-900">Organizer Not Found</h2>
-        <Link to="/discover" className="text-xs font-semibold text-indigo-600 underline">
+        <h2 className="font-editorial text-2xl font-bold text-[#1E2320]">Organizer Not Found</h2>
+        <Link to="/discover" className="text-xs font-semibold text-[#1E3F35] underline">
           Explore all events
         </Link>
       </div>

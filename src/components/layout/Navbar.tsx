@@ -49,19 +49,6 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E7E3DB]">
-      {/* Engine Status Bar */}
-      <div className="bg-[#1E3F35] text-[#D2E2DB] text-[11px] py-1.5 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span className="text-[#96D2BA] font-semibold">● Live Engine:</span>
-        <span>Real Event Persistence & Geolocation Active.</span>
-        <span className="text-[#6C9685]">·</span>
-        <button
-          onClick={() => handleQuickSwitch(currentUser?.role === 'organizer' ? 'attendee' : 'organizer')}
-          className="text-white hover:underline underline-offset-2 transition-colors cursor-pointer"
-        >
-          View as {currentUser?.role === 'organizer' ? 'Attendee (Sarah)' : 'Organizer (Marcus)'}
-        </button>
-      </div>
-
       {/* Top Bar Contract: 3 zones, gap-8 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
         {/* Zone 1: Single text element wordmark in Editorial Serif */}

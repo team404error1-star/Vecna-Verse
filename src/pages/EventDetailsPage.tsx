@@ -84,13 +84,13 @@ export function EventDetailsPage() {
         <div className="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center mx-auto">
           <AlertCircle className="w-6 h-6" />
         </div>
-        <h2 className="text-xl font-bold text-slate-900">Event Not Found</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="font-editorial text-2xl font-bold text-[#1E2320]">Event Not Found</h2>
+        <p className="text-sm text-[#5F635D]">
           The event you are looking for may have been removed or does not exist.
         </p>
         <Link
           to="/discover"
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700 transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#1E3F35] text-white rounded-lg text-xs font-semibold hover:bg-[#163028] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Discover</span>

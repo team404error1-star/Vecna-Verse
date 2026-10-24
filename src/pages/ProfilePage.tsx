@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { User, Check, AlertCircle, MapPin, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { User, Check, AlertCircle, MapPin, Sparkles, LogOut } from 'lucide-react';
 import { authService } from '../services/auth-service';
 import { UserProfile, EventCategory } from '../types';
 import { DEMO_CATEGORIES, DEMO_NEIGHBORHOODS } from '../mocks/demo-data';
@@ -7,6 +8,7 @@ import { useToast } from '../components/ui/Toast';
 import { isDemoMode } from '../services/api-client';
 
 export function ProfilePage() {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const currentUser = authService.getCurrentUser();
 
@@ -198,12 +200,29 @@ export function ProfilePage() {
           </div>
         </div>
 
-        {/* Save CTA */}
-        <div className="pt-6 border-t border-[#EBE7DF] flex items-center justify-end gap-3">
+        {/* Save & Sign Out CTA */}
+        <div className="pt-6 border-t border-[#EBE7DF] flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={async () => {
+              await authService.logout();
+              navigate('/');
+              toast({
+                type: 'info',
+                title: 'Signed Out',
+                description: 'You have been safely signed out.',
+              });
+            }}
+            className="flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-rose-200 rounded-lg transition-colors cursor-pointer"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>Sign Out</span>
+          </button>
+
           <button
             type="submit"
             disabled={saving}
-            className="px-6 py-2.5 bg-[#1E3F35] hover:bg-[#163028] text-white text-xs font-semibold rounded-lg transition-colors shadow-xs"
+            className="px-6 py-2.5 bg-[#1E3F35] hover:bg-[#163028] text-white text-xs font-semibold rounded-lg transition-colors shadow-xs cursor-pointer"
           >
             {saving ? 'Saving...' : 'Save Profile Changes'}
           </button>

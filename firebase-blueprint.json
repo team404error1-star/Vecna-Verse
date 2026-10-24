@@ -1,0 +1,95 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with neighborhood and interest preferences",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "avatar": { "type": "string" },
+        "bio": { "type": "string" },
+        "neighborhood": { "type": "string" },
+        "interests": { "type": "array" },
+        "role": { "type": "string", "enum": ["attendee", "organizer", "admin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "Community event or gathering listing",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "summary": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "venueName": { "type": "string" },
+        "address": { "type": "string" },
+        "neighborhood": { "type": "string" },
+        "city": { "type": "string" },
+        "price": { "type": "number" },
+        "capacity": { "type": "number" },
+        "registeredCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["published", "draft", "cancelled"] },
+        "tags": { "type": "array" },
+        "isFeatured": { "type": "boolean" },
+        "organizer": { "type": "object" }
+      },
+      "required": ["id", "title", "category", "startDate", "venueName", "neighborhood", "city"]
+    },
+    "Registration": {
+      "title": "Registration",
+      "description": "Event RSVP and attendance ticket pass record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "eventId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string", "format": "email" },
+        "status": { "type": "string", "enum": ["confirmed", "cancelled"] },
+        "registeredAt": { "type": "string" },
+        "ticketCode": { "type": "string" },
+        "checkedIn": { "type": "boolean" }
+      },
+      "required": ["id", "eventId", "userId", "ticketCode", "status"]
+    },
+    "SavedEvent": {
+      "title": "SavedEvent",
+      "description": "User bookmarked event record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "eventId": { "type": "string" },
+        "savedAt": { "type": "string" }
+      },
+      "required": ["userId", "eventId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User account documents keyed by user ID"
+    },
+    "/events/{eventId}": {
+      "schema": "Event",
+      "description": "Public events listing documents"
+    },
+    "/registrations/{registrationId}": {
+      "schema": "Registration",
+      "description": "Attendee event registration records"
+    },
+    "/users/{userId}/saved/{savedId}": {
+      "schema": "SavedEvent",
+      "description": "Bookmarked events saved by each user"
+    }
+  }
+}
