@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { authService } from './services/auth-service';
+import { UserProfile } from './types';
 import { ToastProvider } from './components/ui/Toast';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
@@ -24,6 +26,28 @@ import { SignupPage } from './pages/SignupPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
+/**
+ * Root route: the landing page is for guests only.
+ * Signed-in users are sent straight to their hub (same destinations the
+ * login flow uses) so they never see the marketing landing page.
+ */
+function RootRoute() {
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => authService.getCurrentUser());
+
+  useEffect(() => {
+    const unsubscribe = authService.subscribe((user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (currentUser) {
+    return <Navigate to={currentUser.role === 'organizer' ? '/organizer/dashboard' : '/dashboard'} replace />;
+  }
+
+  return <HomePage />;
+}
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -42,7 +66,7 @@ export default function App() {
           <main className="flex-1">
             <Routes>
               {/* Public Routes */}
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<RootRoute />} />
               <Route path="/discover" element={<DiscoverPage />} />
               <Route path="/events/:eventId" element={<EventDetailsPage />} />
               <Route path="/organizers/:organizerId" element={<OrganizerProfilePage />} />
