@@ -654,6 +654,182 @@ app.delete('/api/me/saved-events/:id', (req: Request, res: Response) => {
   res.json({ saved: false });
 });
 
+// 11. Attendee Check-In
+app.patch('/api/registrations/:id/checkin', (req: Request, res: Response) => {
+  const regs = readJsonFile<any[]>(REGISTRATIONS_FILE, []);
+  const target = regs.find((r) => r.id === req.params.id);
+  if (!target) {
+    return res.status(404).json({ message: 'Registration not found' });
+  }
+  target.checkedIn = !target.checkedIn;
+  writeJsonFile(REGISTRATIONS_FILE, regs);
+  res.json(target);
+});
+
+// 12. Organizers & Profiles
+app.get('/api/organizers/:id', (req: Request, res: Response) => {
+  const events = readJsonFile<any[]>(EVENTS_FILE, INITIAL_SEED_EVENTS);
+  const foundInEvents = events.find(
+    (e) => e.organizer && (e.organizer.id === req.params.id || e.organizer.slug === req.params.id)
+  );
+  if (foundInEvents && foundInEvents.organizer) {
+    return res.json(foundInEvents.organizer);
+  }
+  const foundInSeed = INITIAL_SEED_EVENTS.map((e) => e.organizer).find(
+    (o) => o.id === req.params.id || o.slug === req.params.id
+  );
+  if (foundInSeed) {
+    return res.json(foundInSeed);
+  }
+  return res.status(404).json({ message: 'Organizer not found' });
+});
+
+app.get('/api/organizers/:id/events', (req: Request, res: Response) => {
+  const events = readJsonFile<any[]>(EVENTS_FILE, INITIAL_SEED_EVENTS);
+  const filtered = events.filter(
+    (e) => e.organizer && (e.organizer.id === req.params.id || e.organizer.slug === req.params.id)
+  );
+  res.json(filtered);
+});
+
+// 13. SmartMatch Recommendations
+app.get('/api/smart-match/recommendations', (req: Request, res: Response) => {
+  const { interests, neighborhood, freeOnly } = req.query;
+  const userInterests =
+    typeof interests === 'string' && interests
+      ? interests.split(',').map((s) => s.trim())
+      : ['Food & Community', 'Live Music & Culture'];
+  const userNeighborhood =
+    typeof neighborhood === 'string' && neighborhood ? neighborhood : 'Silverlake Commons';
+  const isFreeOnly = freeOnly === 'true';
+
+  const events = readJsonFile<any[]>(EVENTS_FILE, INITIAL_SEED_EVENTS);
+
+  const scored = events.map((event) => {
+    let score = 30;
+    const matchReasons: string[] = [];
+
+    if (userInterests.includes(event.category)) {
+      score += 35;
+      matchReasons.push(`Matches your interest in ${event.category}`);
+    }
+
+    const matchingTags = (event.tags || []).filter((tag: string) =>
+      userInterests.some((interest: string) => interest.toLowerCase().includes(tag.toLowerCase()))
+    );
+    if (matchingTags.length > 0) {
+      score += 15;
+      matchReasons.push(`Aligned tags: ${matchingTags.slice(0, 2).join(', ')}`);
+    }
+
+    if (userNeighborhood && event.neighborhood === userNeighborhood) {
+      score += 20;
+      matchReasons.push(`Located directly in your home neighborhood (${userNeighborhood})`);
+    } else {
+      score += 5;
+      matchReasons.push(`Within 15 min transit in ${event.neighborhood}`);
+    }
+
+    if (isFreeOnly && event.price === 0) {
+      score += 10;
+      matchReasons.push('Free community admission');
+    } else if (!isFreeOnly && event.price === 0) {
+      score += 5;
+    }
+
+    const remainingCapacity = (event.capacity || 50) - (event.registeredCount || 0);
+    if (remainingCapacity > 10) {
+      score += 5;
+      matchReasons.push('Good seating & registration availability');
+    }
+
+    return {
+      event,
+      score: Math.min(98, score),
+      matchReasons,
+    };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  res.json(scored);
+});
+
+// 14. Auth & User Profile
+const USERS_FILE = path.join(DATA_DIR, 'users.json');
+const INITIAL_USERS = [
+  {
+    id: 'usr-attendee-1',
+    name: 'Sarah Chen',
+    email: 'sarah.chen@example.com',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+    bio: 'Product designer & urban gardener passionate about neighborhood sustainability and local live music.',
+    neighborhood: 'Silverlake Commons',
+    interests: ['Food & Community', 'Live Music & Culture', 'Technology & Hackathons', 'Fitness & Outdoors'],
+    role: 'attendee',
+    createdAt: '2026-01-15T08:00:00Z',
+  },
+  {
+    id: 'usr-org-1',
+    name: 'Marcus Vance',
+    email: 'marcus@civictech.demo',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    bio: 'Organizer lead at Metro Civic Tech Collective. Building bridges between local technology innovators and neighborhood communities.',
+    neighborhood: 'Downtown Arts District',
+    interests: ['Technology & Hackathons', 'Workshops & Learning', 'Volunteering & Impact'],
+    role: 'organizer',
+    createdAt: '2025-10-10T11:00:00Z',
+  },
+];
+
+if (!fs.existsSync(USERS_FILE)) {
+  writeJsonFile(USERS_FILE, INITIAL_USERS);
+}
+
+app.post('/api/auth/login', (req: Request, res: Response) => {
+  const { email } = req.body;
+  const users = readJsonFile<any[]>(USERS_FILE, INITIAL_USERS);
+  let user = users.find((u) => u.email.toLowerCase() === (email || '').toLowerCase());
+  if (!user) {
+    const isOrg = email && (email.includes('org') || email.includes('civictech') || email.includes('marcus'));
+    user = users.find((u) => (isOrg ? u.role === 'organizer' : u.role === 'attendee')) || users[0];
+  }
+  res.json({ user, token: 'demo_jwt_token_locora_preview' });
+});
+
+app.post('/api/auth/signup', (req: Request, res: Response) => {
+  const { name, email, role = 'attendee' } = req.body;
+  const users = readJsonFile<any[]>(USERS_FILE, INITIAL_USERS);
+  const newUser = {
+    id: `usr-${Date.now()}`,
+    name: name || 'Community Member',
+    email: email || `user-${Date.now()}@example.com`,
+    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80',
+    bio: role === 'organizer' ? 'Community organizer in Metro City.' : 'Local resident and active event attendee.',
+    neighborhood: 'Downtown Arts District',
+    interests: ['Food & Community', 'Live Music & Culture'],
+    role,
+    createdAt: new Date().toISOString(),
+  };
+  users.push(newUser);
+  writeJsonFile(USERS_FILE, users);
+  res.status(201).json({ user: newUser, token: 'demo_jwt_token_locora_preview' });
+});
+
+app.get('/api/me', (_req: Request, res: Response) => {
+  const users = readJsonFile<any[]>(USERS_FILE, INITIAL_USERS);
+  res.json(users[0]);
+});
+
+app.patch('/api/me', (req: Request, res: Response) => {
+  const users = readJsonFile<any[]>(USERS_FILE, INITIAL_USERS);
+  if (users.length > 0) {
+    users[0] = { ...users[0], ...req.body };
+    writeJsonFile(USERS_FILE, users);
+    return res.json(users[0]);
+  }
+  res.status(404).json({ message: 'User not found' });
+});
+
 // ----------------------------------------------------
 // VITE MIDDLEWARE (DEV) OR STATIC BUILD (PROD)
 // ----------------------------------------------------

@@ -195,6 +195,10 @@ export const registrationsService = {
   },
 
   async toggleCheckIn(registrationId: string): Promise<AttendeeRegistration> {
+    if (!isDemoMode()) {
+      return apiClient.patch<AttendeeRegistration>(`/registrations/${registrationId}/checkin`);
+    }
+
     const all = getStoredRegistrations();
     const target = all.find((r) => r.id === registrationId);
     if (!target) throw new Error('Registration record not found');

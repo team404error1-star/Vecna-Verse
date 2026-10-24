@@ -107,6 +107,17 @@ export const authService = {
   },
 
   async updateProfile(updates: Partial<UserProfile>): Promise<UserProfile> {
+    if (!isDemoMode()) {
+      try {
+        const updated = await apiClient.patch<UserProfile>('/me', updates);
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(updated));
+        notify(updated);
+        return updated;
+      } catch (err) {
+        console.warn('Backend updateProfile failed, falling back to local update:', err);
+      }
+    }
+
     const current = this.getCurrentUser();
     if (!current) throw new Error('Not authenticated');
 
