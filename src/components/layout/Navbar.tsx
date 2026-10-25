@@ -42,6 +42,8 @@ export function Navbar() {
     }
   };
 
+  const isLandingPage = !currentUser && (location.pathname === '/' || location.pathname === '/landing');
+
   const isCurrent = (path: string) => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
@@ -63,51 +65,73 @@ export function Navbar() {
 
         {/* Zone 2: 4-5 single-line clean navigation links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#5F635D]">
-          <Link
-            to="/discover"
-            className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
-              isCurrent('/discover')
-                ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
-                : 'hover:text-[#1E2320]'
-            }`}
-          >
-            Discover
-          </Link>
+          {isLandingPage ? (
+            <>
+              <a href="#how-it-works" className="hover:text-[#1E2320] transition-colors whitespace-nowrap shrink-0">
+                How It Works
+              </a>
+              <a href="#features" className="hover:text-[#1E2320] transition-colors whitespace-nowrap shrink-0">
+                Capabilities
+              </a>
+              <a href="#community" className="hover:text-[#1E2320] transition-colors whitespace-nowrap shrink-0">
+                Community
+              </a>
+              <a href="#faq" className="hover:text-[#1E2320] transition-colors whitespace-nowrap shrink-0">
+                FAQ
+              </a>
+              <Link to="/discover" className="hover:text-[#1E2320] transition-colors whitespace-nowrap shrink-0">
+                Explore Events
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/discover"
+                className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
+                  isCurrent('/discover')
+                    ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                    : 'hover:text-[#1E2320]'
+                }`}
+              >
+                Discover
+              </Link>
 
-          <Link
-            to="/smart-match"
-            className={`inline-flex items-center gap-1 transition-colors whitespace-nowrap shrink-0 pb-1 ${
-              isCurrent('/smart-match')
-                ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
-                : 'hover:text-[#1E2320]'
-            }`}
-          >
-            <span>SmartMatch</span>
-          </Link>
+              <Link
+                to="/smart-match"
+                className={`inline-flex items-center gap-1 transition-colors whitespace-nowrap shrink-0 pb-1 ${
+                  isCurrent('/smart-match')
+                    ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                    : 'hover:text-[#1E2320]'
+                }`}
+              >
+                <span>SmartMatch</span>
+              </Link>
 
-          {currentUser && (
-            <Link
-              to="/dashboard"
-              className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
-                isCurrent('/dashboard') || isCurrent('/my-registrations') || isCurrent('/saved')
-                  ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
-                  : 'hover:text-[#1E2320]'
-              }`}
-            >
-              My Hub
-            </Link>
+              {currentUser && (
+                <Link
+                  to="/dashboard"
+                  className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
+                    isCurrent('/dashboard') || isCurrent('/my-registrations') || isCurrent('/saved')
+                      ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                      : 'hover:text-[#1E2320]'
+                  }`}
+                >
+                  My Hub
+                </Link>
+              )}
+
+              <Link
+                to="/organizer/dashboard"
+                className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
+                  isCurrent('/organizer')
+                    ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
+                    : 'hover:text-[#1E2320]'
+                }`}
+              >
+                Organizer Hub
+              </Link>
+            </>
           )}
-
-          <Link
-            to="/organizer/dashboard"
-            className={`transition-colors whitespace-nowrap shrink-0 pb-1 ${
-              isCurrent('/organizer')
-                ? 'text-[#1E2320] border-b-2 border-[#1E3F35] font-semibold'
-                : 'hover:text-[#1E2320]'
-            }`}
-          >
-            Organizer Hub
-          </Link>
         </nav>
 
         {/* Zone 3: 1 primary action */}
@@ -212,34 +236,51 @@ export function Navbar() {
                 </div>
               )}
             </div>
+          ) : isLandingPage ? (
+            <div className="flex items-center gap-2">
+              <Link
+                to="/login"
+                className="px-3.5 py-2 text-xs font-semibold text-[#1E2320] hover:text-[#1E3F35] transition-colors whitespace-nowrap shrink-0"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/signup"
+                className="px-4 py-2 text-xs font-semibold text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-2xs"
+              >
+                Join Free
+              </Link>
+            </div>
           ) : (
-            <Link
-              to="/login"
-              className="px-4 py-2 text-xs font-medium text-white bg-[#1E3F35] rounded-lg hover:bg-[#163028] transition-colors whitespace-nowrap shrink-0"
-            >
-              Sign In
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                to="/login"
+                className="px-4 py-2 text-xs font-medium text-white bg-[#1E3F35] rounded-lg hover:bg-[#163028] transition-colors whitespace-nowrap shrink-0"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/organizer/events/new"
+                className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-2xs"
+              >
+                <PlusCircle className="w-3.5 h-3.5" />
+                <span>Post Event</span>
+              </Link>
+            </div>
           )}
-
-          {/* Quick Create Event Primary Button */}
-          <Link
-            to="/organizer/events/new"
-            className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-2xs"
-          >
-            <PlusCircle className="w-3.5 h-3.5" />
-            <span>Post Event</span>
-          </Link>
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <div className="flex md:hidden items-center gap-2">
-          <Link
-            to="/organizer/events/new"
-            className="p-2 text-[#1E3F35] hover:bg-[#EAF1ED] rounded-lg"
-            aria-label="Post event"
-          >
-            <PlusCircle className="w-5 h-5" />
-          </Link>
+          {!isLandingPage && (
+            <Link
+              to="/organizer/events/new"
+              className="p-2 text-[#1E3F35] hover:bg-[#EAF1ED] rounded-lg"
+              aria-label="Post event"
+            >
+              <PlusCircle className="w-5 h-5" />
+            </Link>
+          )}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-[#1E2320] hover:text-[#1E3F35] rounded-lg"
@@ -253,60 +294,99 @@ export function Navbar() {
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-slate-200 bg-white px-4 py-5 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
-          <div className="space-y-1">
-            <Link
-              to="/"
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              Home
-            </Link>
-            <Link
-              to="/discover"
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              Discover Events
-            </Link>
-            <Link
-              to="/smart-match"
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              SmartMatch Recommendations
-            </Link>
-            {currentUser && (
-              <>
-                <Link
-                  to="/dashboard"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-                >
-                  My Dashboard
-                </Link>
-                <Link
-                  to="/my-registrations"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-                >
-                  My Registrations
-                </Link>
-                <Link
-                  to="/saved"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-                >
-                  Saved Events
-                </Link>
-                <Link
-                  to="/profile"
-                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-                >
-                  Profile & Preferences
-                </Link>
-              </>
-            )}
-            <Link
-              to="/organizer/dashboard"
-              className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              Organizer Dashboard
-            </Link>
-          </div>
+          {isLandingPage ? (
+            <div className="space-y-1">
+              <a
+                href="#how-it-works"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                How It Works
+              </a>
+              <a
+                href="#features"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Capabilities
+              </a>
+              <a
+                href="#community"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Community
+              </a>
+              <a
+                href="#faq"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                FAQ
+              </a>
+              <Link
+                to="/discover"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Explore All Events
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-1">
+              <Link
+                to="/"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Home
+              </Link>
+              <Link
+                to="/discover"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Discover Events
+              </Link>
+              <Link
+                to="/smart-match"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                SmartMatch Recommendations
+              </Link>
+              {currentUser && (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  >
+                    My Dashboard
+                  </Link>
+                  <Link
+                    to="/my-registrations"
+                    className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  >
+                    My Registrations
+                  </Link>
+                  <Link
+                    to="/saved"
+                    className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  >
+                    Saved Events
+                  </Link>
+                  <Link
+                    to="/profile"
+                    className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  >
+                    Profile & Preferences
+                  </Link>
+                </>
+              )}
+              <Link
+                to="/organizer/dashboard"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Organizer Dashboard
+              </Link>
+            </div>
+          )}
 
           <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
             {currentUser ? (
@@ -330,21 +410,37 @@ export function Navbar() {
                   Sign Out
                 </button>
               </div>
+            ) : isLandingPage ? (
+              <div className="flex flex-col gap-2">
+                <Link
+                  to="/signup"
+                  className="w-full text-center py-2.5 text-xs font-semibold text-white bg-[#1E3F35] rounded-lg"
+                >
+                  Join Locora Free
+                </Link>
+                <Link
+                  to="/login"
+                  className="w-full text-center py-2.5 text-xs font-medium text-slate-700 bg-slate-100 rounded-lg"
+                >
+                  Sign In
+                </Link>
+              </div>
             ) : (
-              <Link
-                to="/login"
-                className="w-full text-center py-2.5 text-xs font-medium text-white bg-[#1E3F35] rounded-lg"
-              >
-                Sign In
-              </Link>
+              <div className="flex flex-col gap-2">
+                <Link
+                  to="/login"
+                  className="w-full text-center py-2.5 text-xs font-medium text-white bg-[#1E3F35] rounded-lg"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/organizer/events/new"
+                  className="w-full text-center py-2.5 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg"
+                >
+                  Create New Event
+                </Link>
+              </div>
             )}
-
-            <Link
-              to="/organizer/events/new"
-              className="w-full text-center py-2.5 text-xs font-medium text-white bg-[#1E3F35] hover:bg-[#163028] rounded-lg"
-            >
-              Create New Event
-            </Link>
           </div>
         </div>
       )}
